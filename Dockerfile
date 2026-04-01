@@ -9,7 +9,7 @@ WORKDIR /app
 # Download Go modules
 COPY go.mod go.sum ./
 COPY *.go ./
-COPY pkg ./pkg
+# COPY pkg ./pkg
 RUN go mod download
 
 # Build
