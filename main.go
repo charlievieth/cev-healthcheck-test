@@ -51,14 +51,14 @@ func main() {
 	log.Info("starting http server", zap.String("address", addr))
 
 	// Add a heartbeat for the sake of seeing logs.
-	go func() {
+	go func(log *zap.Logger) {
 		n := 0
 		tick := time.NewTicker(time.Second * 10)
 		for range tick.C {
 			log.Info("heartbeat", zap.Int("count", n))
 			n++
 		}
-	}()
+	}(log)
 
 	var requestCount atomic.Int64
 	err = http.ListenAndServe(addr, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -72,7 +72,7 @@ func main() {
 		if r.URL != nil {
 			url = r.URL.String()
 		}
-		log = log.With(
+		log := log.With(
 			zap.Int64("request_id", requestCount.Add(1)),
 			zap.String("method", r.Method),
 			zap.String("url", url),
