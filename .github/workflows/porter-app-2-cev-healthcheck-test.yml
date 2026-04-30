@@ -20,8 +20,8 @@ jobs:
               env:
                 PORTER_APP_NAME: cev-healthcheck-test
                 PORTER_CLUSTER: "2"
-                PORTER_DEPLOYMENT_TARGET_ID: 753cc739-a515-4890-adb7-8a1bda6110e7
+                PORTER_DEPLOYMENT_TARGET_ID: e55369b1-e0f8-4c89-b0d0-8045914fd53d
                 PORTER_HOST: https://charlie.withporter.run
                 PORTER_PROJECT: "1"
                 PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
-                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_1166072817 }}
+                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_1 }}
