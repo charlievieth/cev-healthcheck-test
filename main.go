@@ -36,6 +36,7 @@ var listenPort = flag.String("port", envOr("SRV_PORT", "8080"),
 	"Port to listen for connections on.")
 
 func main() {
+	flag.Parse()
 	id, err := instanceID()
 	if err != nil {
 		panic(err)
@@ -55,7 +56,7 @@ func main() {
 		n := 0
 		tick := time.NewTicker(time.Second * 10)
 		for range tick.C {
-			log.Info("heartbeat", zap.Int("count", n))
+			log.Info("heartbeat test", zap.Int("count", n))
 			n++
 		}
 	}(log)
