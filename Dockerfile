@@ -1,6 +1,5 @@
 # syntax=docker/dockerfile:1
 
-# FROM golang:1.26
 FROM golang:1.26-alpine
 
 # Set destination for COPY
