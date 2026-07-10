@@ -5,6 +5,10 @@ FROM golang:1.26-alpine
 # Set destination for COPY
 WORKDIR /app
 
+# WARN: Failing predeploy script.
+COPY scripts/predeploy-fail.sh /app/predeploy-fail.sh
+RUN chmod +x /app/predeploy-fail.sh
+
 # Download Go modules
 COPY go.mod go.sum ./
 COPY *.go ./

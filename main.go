@@ -11,6 +11,7 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"strconv"
 	"sync/atomic"
 	"time"
 
@@ -169,10 +170,14 @@ func main() {
 			http.Error(w, fmt.Sprintf("error: %s", err), http.StatusInternalServerError)
 			return
 		}
+		// content-type: text/plain; charset=utf-8
+		h := r.Header
+		h.Set("Content-Type", "application/json; charset=utf-8")
+		h.Set("Content-Length", strconv.Itoa(len(data)))
 		w.WriteHeader(200)
 		w.Write(data)
 	})
-	if err := http.ListenAndServe(addr, LoggingHandler(handler, log)); err != nil {
+	if err := http.ListenAndServe(addr, LoggingHandler(handler, log.Named("request"))); err != nil {
 		log.Fatal("server exited with error", zap.Error(err))
 	}
 }
