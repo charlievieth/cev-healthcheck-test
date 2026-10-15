@@ -24,4 +24,4 @@ jobs:
                 PORTER_HOST: https://charlie.withporter.run
                 PORTER_PROJECT: "1"
                 PORTER_TAG: ${{ steps.vars.outputs.sha_short }}
-                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_1 }}
+                PORTER_TOKEN: ${{ secrets.PORTER_APP_1_2 }}
